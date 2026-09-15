@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=schema/suite.yaml
+# ISO 690 rendering conformance corpus manifest.
+---
+id: corpus:iso-690
+name: ISO 690 Rendering Conformance Corpus
+description: >-
+  Machine-readable rendering tests for ISO 690:2010 (Information and
+  documentation — Guidelines for bibliographic references and citations
+  to information resources), built from the standard's clause 8 worked
+  examples. Inputs are relaton v3 bibitem XML; expected outputs are
+  strings keyed by rendering style and language.
+maintainer: Ribose Inc. / relaton
+repository: https://github.com/relaton/relaton-render
+version: 0.1.0
+standardization_target_type: iso-690-bibliographic-renderer
+standards:
+  - id: iso-690
+    title: "ISO 690:2010 — Information and documentation — Guidelines for bibliographic references and citations to information resources"
+    edition: 3
+    clause_prefix: "690"
+schema: schema/test.yaml
+tests: tests/*.yaml

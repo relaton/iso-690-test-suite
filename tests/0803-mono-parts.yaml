@@ -1,0 +1,59 @@
+# yaml-language-server: $schema=../schema/test.yaml
+# ISO 690:2010 clause 8.3 — monograph component parts.
+---
+- id: iso690-test:0803-juturu
+  description: "JUTURU — component part of a monograph, host locality"
+  source: "ISO 690:2010, clause 8.3"
+  pending: "host locality (Vol. 2, pp. 158-59) and host production/date are not modelled in the component part element"
+  given:
+    bibitem: |
+      <bibitem type="book" relationship-type="part">
+        <title>Type 2 Diabetes</title>
+        <contributor><role type="author"/>
+          <person><name><surname>Juturu</surname><forename>Vijaya</forename></name></person>
+        </contributor>
+        <relation type="partOf">
+          <bibitem>
+            <title>Encyclopedia of Obesity</title>
+            <date type="published"><on>2008</on></date>
+            <contributor><role type="publisher"/>
+              <organization><name>Sage Publications</name></organization>
+            </contributor>
+            <docidentifier type="ISBN">978-1412952385</docidentifier>
+          </bibitem>
+        </relation>
+      </bibitem>
+  expect:
+    rendering:
+      author-date:
+        en: "JUTURU, Vijaya. _Type 2 Diabetes_. In: _Encyclopedia of Obesity_. Vol. 2, pp. 158-59. ISBN 978-1412952385. Sage Publications, 2008."
+
+- id: iso690-test:0803-smith
+  description: "SMITH — component part with host creator and locality"
+  source: "ISO 690:2010, clause 8.3"
+  pending: "host creator rendering inside In: and host locality (pp. 27–30) are not modelled"
+  given:
+    bibitem: |
+      <bibitem type="book" relationship-type="part">
+        <title>Problems of information studies in history.</title>
+        <contributor><role type="author"/>
+          <person><name><surname>Smith</surname><forename>C.</forename></name></person>
+        </contributor>
+        <relation type="partOf">
+          <bibitem>
+            <title>Humanities information research</title>
+            <date type="published"><on>1980</on></date>
+            <contributor><role type="editor"/>
+              <person><name><surname>Stone</surname><forename>S.</forename></name></person>
+            </contributor>
+            <contributor><role type="publisher"/>
+              <organization><name>CRUS</name></organization>
+            </contributor>
+            <place><city>Sheffield</city></place>
+          </bibitem>
+        </relation>
+      </bibitem>
+  expect:
+    rendering:
+      author-date:
+        en: "SMITH, C. _Problems of information studies in history._ In: S. STONE (ed.). _Humanities information research_. Sheffield: CRUS, 1980, pp. 27–30."

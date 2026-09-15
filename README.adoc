@@ -1,0 +1,53 @@
+= ISO 690 rendering conformance test suite
+
+A machine-readable test suite for implementations of ISO 690:2010
+bibliographic rendering, built from the standard's clause 8 worked
+examples (transcribed in
+https://github.com/metanorma/iso-690[metanorma/iso-690]). Modeled on
+https://github.com/CalConnect/iso-8601-test-suite[CalConnect's ISO 8601
+test suite].
+
+The suite is *implementation-neutral*: `given` inputs are relaton v3
+`<bibitem>` XML and `expect` outputs are plain strings keyed by
+rendering style and language. Implementations in any language — Ruby,
+JavaScript, Python — execute the same files.
+
+The suite is also packaged as the `iso-690-test-suite` gem so Ruby
+implementations can consume it as a versioned dependency
+(`Iso690TestSuite.tests_dir`).
+
+== Layout
+
+* `suite.yaml` — suite manifest (schema: `schema/suite.yaml`)
+* `schema/` — JSON Schemas (YAML form) for every YAML file
+* `tests/<clause>-<topic>.yaml` — one file per ISO 690 clause 8 resource
+  type (schema: `schema/test.yaml`), each a list of tests:
+
+```yaml
+- id: iso690-test:0802-farrar          # stable identifier
+  description: "…"                      # what the example exercises
+  source: "ISO 690:2010, clause 8.2"    # provenance of the example
+  given:
+    bibitem: |                          # relaton v3 XML input
+      <bibitem type="book">…</bibitem>
+  expect:
+    rendering:
+      author-date:                      # style
+        en: "…"                         # language → expected string
+  pending: "…"                          # optional: gap entry — element
+                                       # not yet modelled, with reason
+```
+
+Pending entries carry the standard's expected rendering together with
+the reason the suite does not yet assert it; implementations remove the
+`pending` marker as they close the gap.
+
+== Rendering contract
+
+* Style names (`author-date`, …) resolve to the implementation's style
+  declarations; language codes (BCP 47) to its language declarations.
+* Emphasis in expected strings is `_…_` (the implementation maps this to
+  its output medium's emphasis).
+* All data comes from the typed relaton model — no content heuristics:
+  element selection, identifier kinds and dates dispatch on typed model
+  attributes, never on content patterns.

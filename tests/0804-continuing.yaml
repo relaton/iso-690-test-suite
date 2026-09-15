@@ -1,0 +1,35 @@
+# yaml-language-server: $schema=../schema/test.yaml
+# ISO 690:2010 clause 8.4 — serials and their component parts.
+---
+- id: iso690-test:0804-bulletin-sydney
+  description: "Bulletin (Sydney) — entire serial, closed date range"
+  source: "ISO 690:2010, clause 8.4"
+  given:
+    bibitem: |
+      <bibitem type="serial">
+        <title>Bulletin (Sydney)</title>
+        <date type="published"><from>1880</from><to>2008</to></date>
+        <contributor><role type="publisher"/>
+          <organization><name>Australian Consolidated Press</name></organization>
+        </contributor>
+        <place><city>Sydney</city></place>
+      </bibitem>
+  expect:
+    rendering:
+      author-date:
+        en: "_Bulletin (Sydney)_. Sydney: Australian Consolidated Press, 1880–2008."
+
+- id: iso690-test:0804-bulletin-trimestriel
+  description: "Bulletin trimestriel — open date range and ISSN"
+  source: "ISO 690:2010, clause 8.4"
+  given:
+    bibitem: |
+      <bibitem type="serial">
+        <title>Bulletin trimestriel de l’Institut archéologique du Luxembourg Arlon</title>
+        <date type="published"><from>1925</from></date>
+        <docidentifier type="ISSN">0020-2177</docidentifier>
+      </bibitem>
+  expect:
+    rendering:
+      author-date:
+        en: "_Bulletin trimestriel de l’Institut archéologique du Luxembourg Arlon_. 1925–. ISSN 0020-2177."

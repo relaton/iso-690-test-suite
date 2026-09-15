@@ -1,0 +1,44 @@
+# yaml-language-server: $schema=../schema/test.yaml
+# ISO 690:2010 clause 8.11 — reports in series, standards.
+---
+- id: iso690-test:0811-iso-690-self
+  description: "ISO 690 itself — corporate creator with abbreviation"
+  source: "ISO 690:2010, clause 8.11"
+  given:
+    bibitem: |
+      <bibitem type="book">
+        <title>ISO 690:2010 Information and documentation – Guidelines for bibliographic references and citations to information resources</title>
+        <contributor><role type="author"/>
+          <organization>
+            <name>International Organization for Standardization</name>
+            <abbreviation>ISO</abbreviation>
+          </organization>
+        </contributor>
+      </bibitem>
+  expect:
+    rendering:
+      author-date:
+        en: "INTERNATIONAL ORGANIZATION FOR STANDARDIZATION (ISO). _ISO 690:2010 Information and documentation – Guidelines for bibliographic references and citations to information resources_."
+
+- id: iso690-test:0811-rfc-3979
+  description: "RFC 3979 — online report, host creator, date of citation"
+  source: "ISO 690:2010, clause 8.11"
+  pending: "host creator rendering inside In:, category annotation (Best Current Practice) and viewed date ([viewed …]) are not modelled"
+  given:
+    bibitem: |
+      <bibitem type="report">
+        <title>RFC 3979: Intellectual Property Rights in IETF Technology</title>
+        <medium>online</medium>
+        <date type="published"><on>2005</on></date>
+        <contributor><role type="publisher"/>
+          <organization>
+            <name>Internet Engineering Task Force</name>
+            <abbreviation>IETF</abbreviation>
+          </organization>
+        </contributor>
+        <accesslocation>http://www.ietf.org/rfc/rfc3979.txt</accesslocation>
+      </bibitem>
+  expect:
+    rendering:
+      author-date:
+        en: "INTERNET ENGINEERING TASK FORCE (IETF). _RFC 3979: Intellectual Property Rights in IETF Technology_ [online]. Best Current Practice. S. BRADNER (ed.). 2005. Available from: http://www.ietf.org/rfc/rfc3979.txt. [viewed 2012-06-18]."

@@ -1,0 +1,149 @@
+# yaml-language-server: $schema=../schema/test.yaml
+# ISO 690:2010 clause 8.2 — monographs.
+---
+- id: iso690-test:0802-farrar
+  description: "FARRAR — simple printed monograph"
+  source: "ISO 690:2010, clause 8.2"
+  given:
+    bibitem: |
+      <bibitem type="book">
+        <title>Eric, or Little by Little: a tale of Roslyn School</title>
+        <date type="published"><on>1971</on></date>
+        <contributor><role type="author"/>
+          <person><name><surname>Farrar</surname>
+            <forename>Frederic</forename><forename>William</forename></name></person>
+        </contributor>
+        <contributor><role type="publisher"/>
+          <organization><name>Hamilton</name></organization>
+        </contributor>
+        <place><city>London</city></place>
+      </bibitem>
+  expect:
+    rendering:
+      author-date:
+        en: "FARRAR, Frederic William. _Eric, or Little by Little: a tale of Roslyn School_. London: Hamilton, 1971."
+
+- id: iso690-test:0802-hamilton
+  description: "HAMILTON — three editors as creators, serial comma, role suffix"
+  source: "ISO 690:2010, clause 8.2"
+  given:
+    bibitem: |
+      <bibitem type="book">
+        <title>From martyr to muppy (Mennonite urban professionals): a historical introduction to cultural assimilation processes of a religious minority in the Netherlands, the Mennonites</title>
+        <date type="published"><on>1994</on></date>
+        <contributor><role type="editor"/>
+          <person><name><surname>Hamilton</surname><forename>Alastair</forename></name></person>
+        </contributor>
+        <contributor><role type="editor"/>
+          <person><name><surname>Voolstra</surname><forename>Sjouke</forename></name></person>
+        </contributor>
+        <contributor><role type="editor"/>
+          <person><name><surname>Visser</surname><forename>Piet</forename></name></person>
+        </contributor>
+        <contributor><role type="publisher"/>
+          <organization><name>Amsterdam University Press</name></organization>
+        </contributor>
+        <place><city>Amsterdam</city></place>
+      </bibitem>
+  expect:
+    rendering:
+      author-date:
+        en: "HAMILTON, Alastair, Sjouke VOOLSTRA, and Piet VISSER (eds.). _From martyr to muppy (Mennonite urban professionals): a historical introduction to cultural assimilation processes of a religious minority in the Netherlands, the Mennonites_. Amsterdam: Amsterdam University Press, 1994."
+        fr: "HAMILTON, Alastair, Sjouke VOOLSTRA et Piet VISSER (éd.). _From martyr to muppy (Mennonite urban professionals): a historical introduction to cultural assimilation processes of a religious minority in the Netherlands, the Mennonites_. Amsterdam : Amsterdam University Press, 1994."
+
+- id: iso690-test:0802-parker
+  description: "PARKER — two creators, edition, per-volume subsidiary creators"
+  source: "ISO 690:2010, clause 8.2"
+  pending: "subsidiary creator per volume (Vol. 1 revised by …) is not modelled"
+  given:
+    bibitem: |
+      <bibitem type="book">
+        <title>A text book of zoology</title>
+        <edition>6</edition>
+        <date type="published"><on>1940</on></date>
+        <contributor><role type="author"/>
+          <person><name><surname>Parker</surname><forename>T. J.</forename></name></person>
+        </contributor>
+        <contributor><role type="author"/>
+          <person><name><surname>Haswell</surname><forename>W. A.</forename></name></person>
+        </contributor>
+        <contributor><role type="publisher"/>
+          <organization><name>Macmillan</name></organization>
+        </contributor>
+        <place><city>London</city></place>
+      </bibitem>
+  expect:
+    rendering:
+      author-date:
+        en: "PARKER, T. J. and W. A. HASWELL. _A text book of zoology_. 6th ed. Vol. 1 revised by Otto LOWENSTEIN; Vol. 2 revised by C. FORSTER-COOPER. London: Macmillan, 1940."
+
+- id: iso690-test:0802-fowler
+  description: "FOWLER — creator public identity (ISNI), subsidiary creator"
+  source: "ISO 690:2010, clause 8.2"
+  pending: "ISNI creator identifier and 'Revised by …' subsidiary creator are not modelled"
+  given:
+    bibitem: |
+      <bibitem type="book">
+        <title>Fowler's dictionary of modern English usage</title>
+        <edition>4</edition>
+        <date type="published"><on>2015</on></date>
+        <contributor><role type="author"/>
+          <person><name><surname>Fowler</surname><forename>H. W</forename></name></person>
+        </contributor>
+        <contributor><role type="publisher"/>
+          <organization><name>Oxford University Press</name></organization>
+        </contributor>
+        <place><city>Oxford</city></place>
+        <docidentifier type="ISBN">978-0-19-966135-0</docidentifier>
+      </bibitem>
+  expect:
+    rendering:
+      author-date:
+        en: "FOWLER, H. W [ISNI 0000 0001 2101 5357]. _Fowler's dictionary of modern English usage_. 4th ed. Revised by Jeremy BUTTERFIELD. ISBN 978-0-19-966135-0. Oxford: Oxford University Press, 2015."
+
+- id: iso690-test:0802-geherin
+  description: "GEHERIN — online monograph, distributor, access restrictions"
+  source: "ISO 690:2010, clause 8.2"
+  pending: "distributor (Available from: EBSCOhost) and access restrictions ([paywall]) are not modelled"
+  given:
+    bibitem: |
+      <bibitem type="book">
+        <title>Small towns in recent American crime fiction</title>
+        <medium>online</medium>
+        <date type="published"><on>2015</on></date>
+        <contributor><role type="author"/>
+          <person><name><surname>Geherin</surname><forename>David</forename></name></person>
+        </contributor>
+        <contributor><role type="publisher"/>
+          <organization><name>McFarland &amp; Co.</name></organization>
+        </contributor>
+        <place><city>Jefferson</city></place>
+        <docidentifier type="ISBN">978-1-47661918-7</docidentifier>
+      </bibitem>
+  expect:
+    rendering:
+      author-date:
+        en: "GEHERIN, David. _Small towns in recent American crime fiction_ [online]. Jefferson, NC: McFarland & Co., 2015. ISBN 978-1-47661918-7. Available from: EBSCOhost. [paywall]."
+
+- id: iso690-test:0802-homer
+  description: "HOMER — translator role suffix, distributor, network location"
+  source: "ISO 690:2010, clause 8.2"
+  pending: "translator role suffix (trans.), distributor and 'Translated from the Greek' note are not modelled"
+  given:
+    bibitem: |
+      <bibitem type="book">
+        <title>The Iliad of Homer</title>
+        <date type="published"><on>1813</on></date>
+        <contributor><role type="author"/>
+          <person><name><completename>Homer</completename></name></person>
+        </contributor>
+        <contributor><role type="publisher"/>
+          <organization><name>Printed for J. Walker</name></organization>
+        </contributor>
+        <place><city>London</city></place>
+        <accesslocation>https://books.google.fi/books?id=8UN9Z9FYQFkC</accesslocation>
+      </bibitem>
+  expect:
+    rendering:
+      author-date:
+        en: "HOMER. _The Iliad of Homer_. Translated from the Greek. Alexander POPE (trans.). London: Printed for J. Walker, 1813. Available from: Google Books (distributor), https://books.google.fi/books?id=8UN9Z9FYQFkC."

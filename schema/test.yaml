@@ -1,0 +1,40 @@
+# JSON Schema (YAML form) for corpus test files.
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$id: "https://github.com/relaton/relaton-render/corpus/schema/test.yaml"
+title: ISO 690 rendering corpus test file
+type: array
+minItems: 1
+items:
+  type: object
+  required: [id, description, given, expect]
+  additionalProperties: false
+  properties:
+    id:
+      type: string
+      pattern: "^iso690-test:[0-9a-z-]+$"
+    description:
+      type: string
+    source:
+      type: string
+    given:
+      type: object
+      required: [bibitem]
+      additionalProperties: false
+      properties:
+        bibitem:
+          type: string
+    expect:
+      type: object
+      required: [rendering]
+      additionalProperties: false
+      properties:
+        rendering:
+          type: object
+          minProperties: 1
+          additionalProperties:
+            type: object
+            minProperties: 1
+            additionalProperties:
+              type: string
+    pending:
+      type: string

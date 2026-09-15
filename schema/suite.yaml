@@ -1,0 +1,45 @@
+# JSON Schema (YAML form) for the suite manifest (suite.yaml).
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$id: "https://github.com/relaton/iso-690-test-suite/schema/suite.yaml"
+title: ISO 690 rendering test suite manifest
+type: object
+required: [id, name, description, maintainer, repository, version,
+           standardization_target_type, standards, schema, tests]
+additionalProperties: false
+properties:
+  id:
+    type: string
+  name:
+    type: string
+  description:
+    type: string
+  maintainer:
+    type: string
+  repository:
+    type: string
+  version:
+    type: string
+  date:
+    type: string
+    format: date
+  standardization_target_type:
+    type: string
+  standards:
+    type: array
+    minItems: 1
+    items:
+      type: object
+      required: [id, title]
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        edition:
+          type: integer
+        clause_prefix:
+          type: string
+  schema:
+    type: string
+  tests:
+    type: string
